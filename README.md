@@ -1,5 +1,7 @@
 # HoneyPy
 
+![HoneyPy](assets/honeypy.png)
+
 ## Introduction
 
 A honeypot is a decoy system used to attract hackers. Why would you use one? Here are some key reasons:

@@ -21,10 +21,3 @@ A honeypot is a decoy system used to attract hackers. Why would you use one? Her
 | **Malware Honeypots**   | Specifically designed to attract and capture malicious software. Help analyze malware behavior and propagation methods. |
 | **Spam Honeypots**      | Target spammers by emulating email servers or open relays. Collect data about spam campaigns and distribution methods. |
 | **Database Honeypots**  | Simulate database systems to attract attackers seeking sensitive information. Capture SQL injection attempts and other database-specific attacks. |
-
----
-
-## Project Overview
-
-**HoneyPy** is a Python-based honeypot project designed to be a proof of concept for a basic honeypot system. It provides a simple framework for creating and deploying honeypots to detect, analyze, and learn from cyber threats in controlled environments.
-

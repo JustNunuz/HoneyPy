@@ -49,15 +49,19 @@ def emulated_shell(channel, client_ip):
                     break
                 elif command.strip() == b"pwd":
                     response = b"\n/usr/local/\r\n"
+                    creds_logger.info(f'Command {command.strip()}'+ "executed by" + f"{client_ip}")
                 elif command.strip() == b"whoami":
                     response = b"\ncorpuser1\r\n"
+                    creds_logger.info(f'Command {command.strip()}'+ "executed by" + f"{client_ip}")
                 elif command.strip() == b"ls":
                     response = b"\njumpbox1.conf\r\n"
+                    creds_logger.info(f'Command {command.strip()}'+ "executed by" + f"{client_ip}")
                 elif command.strip() == b"cat jumpbox1.conf":
                     response = b"\nGo to deeboodah.com\r\n"
+                    creds_logger.info(f'Command {command.strip()}'+ "executed by" + f"{client_ip}")
                 else:
                     response = b"\n" + command.strip() + b"\r\n"
-
+                    creds_logger.info(f'Command {command.strip()}'+ "executed by" + f"{client_ip}")
                 channel.send(response)
                 channel.send(b"corporate-jumpbox2$ ")
                 command = b""
@@ -81,6 +85,8 @@ class Server(paramiko.ServerInterface):
         return "password"
 
     def check_auth_password(self, username, password):
+        funnel_logger.info(f'Client {self.client_ip} attempted connection with ' + f'username: {username}, ' + f'password: {password}')
+        creds_logger.info(f"{self.client_ip}, {username}, {password}")
         if self.input_username is not None and self.input_password is not None:
             if username == self.input_username and password == self.input_password:
                 return paramiko.AUTH_SUCCESSFUL

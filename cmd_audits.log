@@ -15,3 +15,5 @@ Command b'hello'executed by127.0.0.1
 Command b'version'executed by127.0.0.1
 127.0.0.1, username, f
 Command b'whoami'executed by127.0.0.1
+127.0.0.1, username, h
+Command b'whoami'executed by127.0.0.1

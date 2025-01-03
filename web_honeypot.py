@@ -2,7 +2,7 @@
 import logging
 from logging.handlers import RotatingFileHandler
 from flask import Flask, render_template, request, redirect, url_for
-from web_honeypy import *
+from web_honeypot import *
 
 # Logging format with timestamp
 logging_format = logging.Formatter("%(asctime)s %(message)s")
@@ -31,10 +31,13 @@ def web_honeypot(input_username="admin", input_password="password"):
         funnel_logger.info(f'Client with IP address: {ip_address}, entered \n Username: {username}, Password: {password}')
 
         if username == input_username and password == input_password:
-            return "Deebodah"
+            return redirect(url_for('redirect_page'))
         else:
             return "Invalid Username and Password"
-
+        
+    @app.route("/redirect")
+    def redirect_page():
+        return render_template('redirect.html')
     return app
 
 def run_web_honeypot(port=5000, input_username="admin", input_password="password"):

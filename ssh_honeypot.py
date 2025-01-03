@@ -165,4 +165,4 @@ def honeypot(address, port, username, password):
             print(f"Error closing socket: {error}")
         sys.exit(1)
 
-honeypot("127.0.0.1", 2223, "username", "password")
+honeypot("127.0.0.1", 2223, username=None, password=None)

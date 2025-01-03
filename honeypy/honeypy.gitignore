@@ -1,0 +1,7 @@
+# Virtual Environments
+venv/
+env/
+.env/
+honeypy/
+honeypy/pyvenv.cfg
+

@@ -14,6 +14,19 @@ SSH_BANNER = "SSH-2.0-MySSHServer_1.0"
 # host_key="server.key" # keep the key secret or local
 host_key = paramiko.RSAKey(filename="server.key")
 
+# Loggers + Logging files
+funnel_logger = logging.getLogger("FunnelLogger")
+funnel_logger.setLevel(logging.INFO)
+funnel_handler = RotatingFileHandler("audits.log", maxBytes=2000, backupCount=5)
+funnel_handler.setFormatter(logging_format)
+funnel_logger.addHandler(funnel_handler)
+
+creds_logger = logging.getLogger("CredsLogger")
+creds_logger.setLevel(logging.INFO)
+creds_handler = RotatingFileHandler("cmd_audits.log", maxBytes=2000, backupCount=5)
+creds_handler.setFormatter(logging_format)
+creds_logger.addHandler(creds_handler)
+
 # Emulated shell
 def emulated_shell(channel, client_ip):
     channel.send(b"corporate-jumpbox2$ ")
@@ -105,20 +118,7 @@ class Server(paramiko.ServerInterface):
                 print("No channel was opened.")
                 return
 
-            standard_banner = '''
-            ************************************************************************
-            *                                                                      *
-            *  Server Version: OpenSSH_8.4p1                                       *
-            *                                                                      *
-            *  You have successfully logged in.                                    *
-            *                                                                      *
-            *  Please ensure you comply with our security policies.                *
-            *  Unauthorized access is strictly prohibited.                         *
-            *                                                                      *
-            *  For support, contact: support@example.com                           *
-            *                                                                      *
-            ************************************************************************
-            '''
+            standard_banner = "Welcome to SSH-2.0-MySSHServer_1.0"
             channel.send(standard_banner)
             emulated_shell(channel, client_ip=client_ip)
         except Exception as error:

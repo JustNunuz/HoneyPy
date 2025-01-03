@@ -2,6 +2,7 @@
 import logging
 from logging.handlers import RotatingFileHandler
 from flask import Flask, render_template, request, redirect, url_for
+from web_honeypy import *
 
 # Logging format with timestamp
 logging_format = logging.Formatter("%(asctime)s %(message)s")

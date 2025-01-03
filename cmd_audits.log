@@ -17,3 +17,4 @@ Command b'version'executed by127.0.0.1
 Command b'whoami'executed by127.0.0.1
 127.0.0.1, username, h
 Command b'whoami'executed by127.0.0.1
+Command b'pwd whoami'executed by127.0.0.1
